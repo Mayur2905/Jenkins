@@ -1,4 +1,4 @@
-// creating a maven project in Jenkins using pipeline and deploying it on AWS S3 bucket.
+// Creating a maven project in Jenkins using pipeline and deploying it on AWS S3 bucket.
 
 pipeline {
     agent {
@@ -41,23 +41,3 @@ pipeline {
     }
 }
 
-pipeline {
-    agent any
-    stages {
-        stage('Installing Nginx') {
-            steps {
-                sh ''' sudo apt-get update'''
-                sh ''' sudo apt-get install nginx -y'''
-                sh ''' sudo systemctl start nginx'''
-            }
-        }
-        stage('Downloding Tepmplate') {
-            steps {
-                sh ''' sudo wget https://www.free-css.com/assets/files/free-css-templates/download/page294/digian.zip'''
-                sh ''' sudo apt-get install unzip'''
-                sh ''' sudo unzip digian.zip'''
-                sh ''' sudo mv ./digian-html /var/www/html'''
-            }
-        }
-    }
-}
