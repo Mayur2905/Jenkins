@@ -1,13 +1,15 @@
+// Hosting A Php Application using Jenkins Pipeline
+
 pipeline{
     agent{
-        label 'phpapp'
+        label 'agent1'
     
     }
     stages{
         stage('Pull a file from git')
         {
             steps{
-                sh 'git clone https://github.com/AaravRajSIngh/Chatbot.git'
+                git 'https://github.com/jonastaedcke/prjct.git'
             }
         }
         stage('Installing Apache2')
@@ -27,17 +29,16 @@ pipeline{
                 sh " sudo apt install php-mbstring -y"
             }
         }
-        stage('Install MySQL')
+        stage('removing file from apache2 folder')
         {
             steps{
-                sh " sudo apt-get install mysql-server -y"
-                sh " sudo systemctl start mysql"
+                sh " sudo rm -r /var/www/html/*"
             }
         }
         stage('Deploying sysPass')
         {
             steps{
-                sh " sudo cp -r ./Chatbot/* /var/www/html"
+                sh " sudo cp -r ./* /var/www/html"
             }
         }
     }

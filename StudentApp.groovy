@@ -10,9 +10,9 @@ pipeline{
         stage('Installing Apache2')
         {
             steps{
-                sh "echo '1234' | sudo -S apt-get update"
-                sh "echo '1234' | sudo -S apt-get install apache2 -y"
-                sh "echo '1234' | sudo -S systemctl start apache2"
+                sh "sudo  apt-get update"
+                sh "sudo  apt-get install apache2 -y"
+                sh "sudo  systemctl start apache2"
             }
         }
         stage('Downloading Tomcat 8')
@@ -25,7 +25,7 @@ pipeline{
         stage('Deploying war file')
         {
             steps{
-                sh "echo '1234' | sudo -S mv -r webapp/student.war apache-tomcat-8.5.99/webapps"
+                sh "sudo  mv -r webapp/student.war apache-tomcat-8.5.99/webapps"
             }
         }
         stage('Starting Apache 8')
