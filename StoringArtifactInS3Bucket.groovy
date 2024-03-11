@@ -1,6 +1,7 @@
 // Creating a maven project in Jenkins using pipeline and deploying it on AWS S3 bucket.
 
-pipeline {
+
+pipeline{
     agent {
         label 'maven'
     }
@@ -29,7 +30,6 @@ pipeline {
         stage('Creating a S3 bucket') {
             steps {
                 sh 'aws s3api create-bucket --bucket  studentappbucket775604 --region us-east-2 --create-bucket-configuration LocationConstraint=us-east-2'
-                //sh 'aws s3api create-bucket --bucket StudentApp-Bucket --region us-east-2 --create-bucket-configuration LocationConstraint=us-east-2 --versioning-configuration Status=Enabled'
             }
         }
         stage('Uploading the war file to S3') {
